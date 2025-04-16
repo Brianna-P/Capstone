@@ -1,40 +1,31 @@
 import pandas as pd
 import re
+#SHOWS ALL QUERIES CONTAINING THE KEYWORDS
+def filter_queries(filename):
+    matches = []
+    keywords = {"IN", "ANY", "NONE", ":NC", ":NA", ":ND", ":NI", ":NM"}
 
-def generate_metadata_report(filename):
-    df = pd.read_excel(filename, usecols=[0]) 
+    df = pd.read_excel(filename, usecols=[0])
 
-    output_lines = []
-    total_lengths = []
+    for value in df.iloc[:, 0]:
+        cell_str = str(value).strip().upper()
+        if any(re.search(rf"\b{re.escape(keyword)}\b", cell_str) for keyword in keywords):
+            matches.append(cell_str)
+
+    return matches, len(matches)
+
+def main():
+    filename = "esgish.xlsx"
+    output_file = "matches_output.txt"
     
-    for i, value in enumerate(df.iloc[:, 0], start=1):
-        line = str(value).strip()
-        codes = re.findall(r"\[(.*?)\]", line)
+    matches, count = filter_queries(filename)
 
-        if not codes:
-            continue
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write(f"Number of matches: {count}\n\n")
+        for match in matches:
+            f.write(match + "\n")
+    
+    print(f"Results written to {output_file}")
 
-        output_lines.append(f"Query {i}:")
-
-        query_total = 0
-        for code in codes:
-            name = f"Name for {code}"
-            description = f"Description for {code}"
-
-            name_length = len(name)
-            description_length = len(description)
-            total = name_length + description_length
-            query_total += total
-
-            output_lines.append(f"[{code}] = name: {name_length}, description: {description_length}")
-
-        output_lines.append(f"Total: {query_total}\n")
-        total_lengths.append(query_total)
-
-    avg_length = sum(total_lengths) / len(total_lengths) if total_lengths else 0
-    output_lines.append(f"Average length of each row (names + descriptions): {avg_length:.2f}")
-
-    with open("metadata_report.txt", "w", encoding="utf-8") as f:
-        f.write("\n".join(output_lines))
-
-    print("Metadata report written to metadata_report.txt")
+if __name__ == "__main__":
+    main()

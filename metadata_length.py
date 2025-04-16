@@ -2,6 +2,7 @@ import pandas as pd
 import re
 import json
 
+#PRINTS ALL QUERIES' METADATA LENGTHS 
 def load_metadata(json_file):
     metadata_lookup = {}
     with open(json_file, "r", encoding="utf-8") as f:
