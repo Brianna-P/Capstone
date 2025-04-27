@@ -9,7 +9,7 @@ The scope of this project is an API program capable of conversion to and from Es
 
 Esgish2 -> Natural Language conversion. (FOCUS OF SPRINT 1) This is the first focus of NL2Esgish2, as training a model during Sprint 2 will require a large dataset of Esgish2 to English translations. This will be done using a local LLM, namely Mistral 7B Instruct, which takes each Esgish2 query, extracts related metadata and grammar information, and fetches an equivalent English translation.
 
-Back-and-forth Translations. (FOCUS OF SPRINT 2) This is the main focus of the NL2Esgish2 project, allowing for users to translate input from Esgish2 to English and vice versa. This will done by doing holdout training on a model, such as Flan T5 Base or Flan T5 Small, using 17k lines of Esgish2 to English translations. 
+Back-and-forth translations. (FOCUS OF SPRINT 2) This is the main focus of the NL2Esgish2 project, allowing for users to translate input from Esgish2 to English and vice versa. This will done by doing holdout training on a model, such as Flan T5 Base or Flan T5 Small, using 17k lines of Esgish2 to English translations. 
 
 ### How to Use Translate_to_English To Translate Esgish2 Queries to English
 1. Install Jupyter Notebook and open the application
