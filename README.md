@@ -7,32 +7,16 @@ NL2Esgish2 is a NLP-based tool which converts human-readable text input into the
 ### Features
 The scope of this project is an API program capable of conversion to and from Esgish2. This means there are two main functions that will be syncretically developed.
 
-Esgish2 -> Natural Language conversion. (FOCUS OF SPRINT 1) This is the initial focus of the project due to its lack of reliance on a pre-generated set of data. Due to the formatting of Esgish2, this conversion does not rely on vast quantiles of data being utilized to train a model. In a perfect world we would utilize a model regardless, however our coordinator at ISS Stoxx has only provided us with a datasheet containing queries in Esgish2 without associated natural language.
+Esgish2 -> Natural Language conversion. (FOCUS OF SPRINT 1) This is the first focus of NL2Esgish2, as training a model during Sprint 2 will require a large dataset of Esgish2 to English translations. This will be done using a local LLM, namely Mistral 7B Instruct, which takes each Esgish2 query, extracts related metadata and grammar information, and fetches an equivalent English translation.
 
-This means it will be far simpler if we first implement a simple parser for Esgish2 -> NL as opposed to trying to force a model when we have no relevant data.
+Back-and-forth translations. (FOCUS OF SPRINT 2) This is the main focus of the NL2Esgish2 project, allowing for users to translate input from Esgish2 to English and vice versa. This will done by doing holdout training on a model, such as Flan T5 Base or Flan T5 Small, using 17k lines of Esgish2 to English translations. 
 
-Machine Learning Model Esgish2 -> Natural Language conversion (FOCUS OF SPRINT 2) After Sprint 1 we were asked by our representative within ISS Stoxx to attempt a more model based conversion from Esgish2 to English. Because of this we shifted technologies to
+### How to Use Translate_to_English To Translate Esgish2 Queries to English
+1. Install Jupyter Notebook and open the application
+2. Download the file mistral-7b-instruct-v0.1.Q4_K_M.gguf from https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF to ensure local LLM use
+3. Open Translate_to_English.ipynb in Jupyter Notebook
+4. Edit the model path in the cell 2 of Translate_to_English.ipynb to match the model's local location
+5. Ensure metadata.json is in the same directory (or, edit the file path in line 4, cell 3) as Translate_to_English.ipynb
+6. Edit lines 6 and 7 of the cell 5 of Translate_to_English.ipynb to an the target Excel file that you want translations created for
+7. Run the Jupyter Notebook
 
-Natural Language -> Esgish2 Once the Esgish2 -> NL converter has been developed, we can now utilize it in tandem with the data given to us regarding well formatted Esgish2 queries. From here we are now armed with usable data for modelling.
-
-Our goal now is to train a NLP model that can consistently and efficiently convert natural language to well-formatted Esgish2 queries.
-
-### Technologies and Tools
-Our old plan revolved around investigating and utilizing a variety of different Python libraries:
-
-NLTK
-spaCy
-Transformers Which then shifted into utilizing the ANTLR language to assist in creating a program to digest the Lexer and Grammar information given to us about Esgish2.
-When asked to shift to a Model-based system instead of static query translation we began utilizing Google Colab along with T5 Flan. After difficulties with multiple group members being unable to interface with Google Colab, we shifted to using Jupyter Notebooks with a Mistral-7b-Instruct LLM to translate the original queries to English, then continued using T5 Flan to train our model.
-
-### Plan
-1. Work to better understand Esgish2 as a query language
-2. Begin developing Esgish2 -> NL tool
-3. Ensure Esgish2 -> NL tool works sufficiently
-After finishing the top 3 we moved to a Model Based system, leading to the redoing of the first 3 steps instead with training a model.
-
-4. Utilize the Esgish2 -> NL tool on the dataset we have been given to create the training set.
-5. Split the dataset and begin creating the model for the NL -> Esgish2 tool
-6. Train the model to a high success rate
-7. Request more data if needed
-8. Implement a short demo/display if extra time
