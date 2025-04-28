@@ -20,3 +20,15 @@ Back-and-forth translations. (FOCUS OF SPRINT 2) This is the main focus of the N
 6. Edit lines 6 and 7 of the cell 5 of Translate_to_English.ipynb to an the target Excel file that you want translations created for
 7. Run the Jupyter Notebook
 
+### How to Use Model_Training
+1. Open application in Jupyter Notebook
+2. Run the first cell, it installs the required libraries
+3. Run the next cell which allows the use of the GPU
+4. Authenticate with HuggingFace using next cell
+5. Load in Flan-T5-Base model from HuggingFace and to the device
+6. Use the next cells for formatting your data for training
+    a. First cell formats for English to Esgish2, can edit file name for your own data
+    b. Second one formats for Esgish2 to English, can edit file name for your own data
+7. Run the trainer
+8. When finished, save the model with the desired name
+9. You can now load the model and use it to generate outputs
