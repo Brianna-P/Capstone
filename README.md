@@ -26,9 +26,7 @@ Back-and-forth translations. (FOCUS OF SPRINT 2) This is the main focus of the N
 3. Run the next cell which allows the use of the GPU
 4. Authenticate with HuggingFace using next cell
 5. Load in Flan-T5-Base model from HuggingFace and to the device
-6. Use the next cells for formatting your data for training <br/>
-    a. First cell formats for English to Esgish2, can edit file name for your own data <br/>
-    b. Second one formats for Esgish2 to English, can edit file name for your own data
+6. Then format the data for English to Esgish translations and vice versa
 7. Run the trainer
 8. When finished, save the model with the desired name
 9. You can now load the model and use it to generate outputs
