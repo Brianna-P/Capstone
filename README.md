@@ -30,3 +30,7 @@ Back-and-forth translations. (FOCUS OF SPRINT 2) This is the main focus of the N
 7. Run the trainer
 8. When finished, save the model with the desired name
 9. You can now load the model and use it to generate outputs
+
+### Notebook_UI
+1. Change the name to the model you want to load and run the cell
+2. Run the next cell and follow the instructions given
